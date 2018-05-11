@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
+const InvitationSchema = require("./invitation");
 
 
 const UserSchema = Schema({
@@ -16,9 +17,12 @@ const UserSchema = Schema({
     password: {
         type: String,
         required: true
+    },
+
+    invitations: {
+        type: [ InvitationSchema ],
+        default: []
     }
-
-
 });
 
 

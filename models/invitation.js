@@ -3,7 +3,6 @@ const Schema = mongoose.Schema;
 
 
 const InvitationSchema = new Schema({
-
     accepted: {
        type: Boolean,
        required: true
@@ -11,13 +10,10 @@ const InvitationSchema = new Schema({
 
     message: String,
 
-
     inviteFrom: {
         type: String,
         required: true
     }
-
-
 });
 
 
