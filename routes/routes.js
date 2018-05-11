@@ -15,6 +15,7 @@ module.exports = (app) => {
     app.post( "/login", UserController.login );
     app.get( "/invitations/:id", UserController.getInvitations );
     app.post( "/invite", UserController.invite );
+    app.post( "/accept/invitation", UserController.acceptInvitation );
 
     /** Plant Group */
     app.put( "/plant-group/water/:id", UserPlantGroupController.water );

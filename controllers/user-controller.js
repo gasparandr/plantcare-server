@@ -43,10 +43,17 @@ module.exports = {
 
                 UserPlantGroup.findById(plantGroupId)
                     .then( (plantGroup) => {
+
+                        if ( ! plantGroup ) {
+                            res.send( {success: false, message: "Plant group not found for id: " + plantGroupId});
+                            return;
+                        }
+
                         const notification = {
                             accepted: false,
                             message: " Invited you to be a moderator on " + plantGroup.name,
-                            inviteFrom: inviteFrom
+                            inviteFrom: inviteFrom,
+                            userPlantGroup: plantGroupId
                         };
 
                         user.invitations.push( notification );
@@ -70,6 +77,59 @@ module.exports = {
         User.findById(userId)
             .then( (user) => res.send(user.invitations))
             .catch( next );
+    },
+
+    acceptInvitation(req, res, next) {
+        console.info( "Invitation accept received." );
+        const userId = req.body.userId;
+        const invitationId = req.body.invitationId;
+
+        User.findById( userId )
+            .then( (user) => {
+
+                if ( ! user ) {
+                    res.send( { success: false, message: "User not found." } );
+                    return;
+                }
+
+                let inv;
+
+                for ( let i = 0; i < user.invitations.length; i++) {
+                    if ( user.invitations[i]._id == invitationId ) {
+                        console.log( " Invitation found! " + invitationId);
+                        user.invitations[i].accepted = true;
+                        inv = user.invitations[i];
+                        break;
+                    }
+                }
+
+                if ( ! inv ) {
+                    res.send( { success: false, message: "Invitation not found." } );
+                    return;
+                }
+
+                UserPlantGroup.findById( inv.userPlantGroup )
+                    .then( (plantGroup) => {
+
+                        if ( ! plantGroup ) {
+                            res.send( { success: false, message: "Plant group " + inv.userPlantGroup + " associated with the invitation not found" });
+                            return;
+
+                        }
+
+                        plantGroup.moderators.push( userId );
+
+                        Promise.all([
+                            user.save(),
+                            plantGroup.save()
+                        ])
+                        .then( res.send( { success: true, message: "Invitation from " + inv.inviteFrom + " accepted!" }))
+                        .catch( next )
+
+                    })
+
+            })
+
     }
 
 };
