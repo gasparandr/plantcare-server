@@ -22,7 +22,7 @@ const PlantSchema = new Schema({
 
     sensitivity: Number,
 
-    wateringInterval: Number
+    wateringIntervalDAYS: Number
 });
 
 

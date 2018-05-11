@@ -13,6 +13,11 @@ const UserPlantSchema = new Schema({
     source: {
         type: Schema.Types.ObjectId,
         ref: "Plant"
+    },
+
+    group: {
+        type: Schema.Types.ObjectId,
+        ref: "UserPlantGroup"
     }
 });
 

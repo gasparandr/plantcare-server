@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 const routes = require("./routes/routes");
+const bodyParser = require("body-parser");
 
 mongoose.Promise = global.Promise;
 mongoose.connect("mongodb://localhost/plantcare");
@@ -18,5 +19,8 @@ app.use( bodyParser.json() );
 
 routes(app);
 
+app.use( (err, req, res, next) => {
+    res.status( 422 ).send( { error: err.message });
+});
 
 module.exports = app;

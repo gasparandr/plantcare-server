@@ -14,7 +14,20 @@ const UserPlantGroupSchema = new Schema({
         type: [ Schema.Types.ObjectId ],
         ref: "User",
         default: []
-    }
+    },
+
+    owner: {
+        type: Schema.Types.ObjectId,
+        ref: "User",
+        required: true
+    },
+
+    wateringHistory: {
+        type: [Date],
+        default: []
+    },
+
+    lastWatered: Date
 });
 
 const UserPlantGroup = mongoose.model("UserPlantGroup", UserPlantGroupSchema);
