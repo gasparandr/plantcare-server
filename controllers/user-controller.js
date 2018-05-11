@@ -14,7 +14,7 @@ module.exports = {
                 if ( ! user || user.password !== password) {
                     res.send({ success: false, message: "Login failed."  })
                 } else {
-                    UserPlantGroup.find({ owner: user._id })
+                    UserPlantGroup.find({ $or: [ { owner: user._id }, { moderators: { $in: [  user._id ] }}] })
                         .then( (plantGroups) => {
                             res.send({
                                 success: true,
