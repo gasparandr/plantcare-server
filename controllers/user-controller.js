@@ -130,6 +130,15 @@ module.exports = {
 
             })
 
+    },
+
+    getPlantGroups(req, res, next) {
+        console.info( "Get plant groups request received.");
+        const userId = req.params.id;
+
+        UserPlantGroup.find({ $or: [ { owner: userId }, { moderators: { $in: [  userId ] }}] })
+            .then( (plantGroups) => res.send( plantGroups ))
+            .catch( next );
     }
 
 };

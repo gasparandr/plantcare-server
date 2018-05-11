@@ -14,6 +14,7 @@ module.exports = (app) => {
     /** User */
     app.post( "/login", UserController.login );
     app.get( "/invitations/:id", UserController.getInvitations );
+    app.get( "/plant-groups/:id", UserController.getPlantGroups );
     app.post( "/invite", UserController.invite );
     app.post( "/accept/invitation", UserController.acceptInvitation );
 
