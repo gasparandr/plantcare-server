@@ -22,11 +22,6 @@ const UserPlantGroupSchema = new Schema({
         required: true
     },
 
-    wateringHistory: {
-        type: [Date],
-        default: []
-    },
-
     lastWatered: Date
 });
 

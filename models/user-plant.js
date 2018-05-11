@@ -18,7 +18,14 @@ const UserPlantSchema = new Schema({
     group: {
         type: Schema.Types.ObjectId,
         ref: "UserPlantGroup"
-    }
+    },
+
+    wateringHistory: {
+        type: [Date],
+        default: []
+    },
+
+    lastWatered: Date
 });
 
 
