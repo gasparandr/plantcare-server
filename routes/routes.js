@@ -19,7 +19,7 @@ module.exports = (app) => {
     /** Plant Group */
     app.put( "/plant-group/water/:id", UserPlantGroupController.water );
     app.get( "/plant-group/plants/:id", UserPlantGroupController.getPlants );
-    
+
     /** User Plant */
     app.put( "/plant/water/:id", UserPlantController.water );
 
