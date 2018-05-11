@@ -13,8 +13,8 @@ module.exports = (app) => {
 
     /** User */
     app.post( "/login", UserController.login );
-    app.get( "/invitations", UserController.getInvitations );
-    app.get( "/invite", UserController.invite );
+    app.get( "/invitations/:id", UserController.getInvitations );
+    app.post( "/invite", UserController.invite );
 
     /** Plant Group */
     app.put( "/plant-group/water/:id", UserPlantGroupController.water );

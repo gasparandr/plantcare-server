@@ -13,6 +13,11 @@ const InvitationSchema = new Schema({
     inviteFrom: {
         type: String,
         required: true
+    },
+
+    userPlantGroup: {
+        type: Schema.Types.ObjectId,
+        ref: "UserPlantGroup"
     }
 });
 

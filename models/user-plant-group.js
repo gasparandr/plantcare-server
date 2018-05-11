@@ -30,6 +30,6 @@ const UserPlantGroupSchema = new Schema({
     lastWatered: Date
 });
 
-const UserPlantGroup = mongoose.model("UserPlantGroup", UserPlantGroupSchema);
+const UserPlantGroup = mongoose.model( "UserPlantGroup", UserPlantGroupSchema );
 
 module.exports = UserPlantGroup;
