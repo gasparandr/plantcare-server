@@ -13,6 +13,7 @@ module.exports = (app) => {
 
     /** User */
     app.post( "/login", UserController.login );
+    app.post( "/sign-up", UserController.signUp );
     app.get( "/invitations/:id", UserController.getInvitations );
     app.get( "/plant-groups/:id", UserController.getPlantGroups );
     app.post( "/invite", UserController.invite );
