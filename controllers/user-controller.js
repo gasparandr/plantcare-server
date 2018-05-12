@@ -51,9 +51,10 @@ module.exports = {
 
                         const notification = {
                             accepted: false,
-                            message: " Invited you to be a moderator on " + plantGroup.name,
+                            message: " Invited you to be a moderator on ",
                             inviteFrom: inviteFrom,
-                            userPlantGroup: plantGroupId
+                            userPlantGroup: plantGroupId,
+                            plantGroupName: plantGroup.name
                         };
 
                         user.invitations.push( notification );
@@ -72,6 +73,7 @@ module.exports = {
     },
 
     getInvitations(req, res, next) {
+        console.info( "PING for invites." );
         const userId = req.params.id;
 
         User.findById(userId)
