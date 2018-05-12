@@ -33,14 +33,17 @@ module.exports = {
     signUp(req, res, next) {
         const { email, password, name } = req.body;
 
+        console.info( "Sign-up request received from user " + email );
+
         const user = new User({
             email: email,
             password: password,
             name: name
         });
-        
+
         user.save()
-            .then( res.send({ success: true, message: "User successfully created."}) );
+            .then( res.send({ success: true, message: "User successfully created."}) )
+            .catch( next );
     },
 
     invite(req, res, next) {

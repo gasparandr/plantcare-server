@@ -5,6 +5,22 @@ const UserPlant = require("../models/user-plant");
 
 module.exports = {
 
+    create(req, res, next) {
+        const { name, description, userId } = req.body;
+
+        console.info( "Creating plant group " + name );
+
+        const plantGroup = new UserPlantGroup({
+            name: name,
+            description: description,
+            owner: userId
+        });
+
+        plantGroup.save()
+            .then( res.send( { success: true, message: "Plant group " + name + " successfully created."} ) )
+            .catch( next );
+    },
+
     water(req, res, next) {
         console.info( "Water plant group request received." );
 
