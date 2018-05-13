@@ -27,5 +27,4 @@ module.exports = (app) => {
     /** User Plant */
     app.post( "/user-plant", UserPlantController.create );
     app.put( "/plant/water/:id", UserPlantController.water );
-
 };

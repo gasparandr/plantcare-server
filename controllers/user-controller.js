@@ -89,7 +89,7 @@ module.exports = {
     },
 
     getInvitations(req, res, next) {
-        console.info( "PING for invites." );
+        // console.info( "PING for invites." );
         const userId = req.params.id;
 
         User.findById(userId)
@@ -143,7 +143,6 @@ module.exports = {
                         plantGroup.moderators.push( userId );
 
                         Promise.all([
-                            user.save(),
                             plantGroup.save()
                         ])
                         .then( res.send( { success: true, message: "Invitation from " + inv.inviteFrom + " accepted!" }))
