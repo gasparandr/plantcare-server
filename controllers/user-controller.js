@@ -117,9 +117,14 @@ module.exports = {
                         console.log( " Invitation found! " + invitationId);
                         user.invitations[i].accepted = true;
                         inv = user.invitations[i];
+
+
+                        user.invitations.pull({ _id: user.invitations[i]._id });
+                        user.save();
                         break;
                     }
                 }
+
 
                 if ( ! inv ) {
                     res.send( { success: false, message: "Invitation not found." } );
